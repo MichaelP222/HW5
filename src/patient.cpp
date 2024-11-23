@@ -2,11 +2,19 @@
 #include "../include/patient.h"
 #include <iostream>
 
+Patient::Patient(const std::string& id, const std::string& fName, const std::string& lName,
+            const Date& birthday, 
+            const Doctor * doctor, 
+            const Date& admission, std::string neededSpecialty)
+    : Person(fName, lName), ID(id), dateOfBirth(birthday), attendingPhysician(doctor), neededSpecialty(std::move(neededSpecialty)), admitDate(admission) {}
+
 void Patient::print(std::ostream& out) const {
     out << "Patient: ";
     Person::print(out);
     out << "\nAttending Physician: ";
-    attendingPhysician->print(out);
+    if (attendingPhysician != nullptr){
+        attendingPhysician->print(out);
+    }
     out << "\nAdmit Date: ";
     admitDate.printDate(out);
     out << "\nDischarge Date: ";
@@ -15,13 +23,13 @@ void Patient::print(std::ostream& out) const {
 }
 
 std::string Patient::getID() const {
-    return id;
+    return ID;
 }
 
 Date Patient::getBirthDate() const {
     return dateOfBirth;
 }
-void setBirthDate(const Date& date) {
+void Patient::setBirthDate(const Date& date) {
     dateOfBirth = date;
 }
 
@@ -39,7 +47,7 @@ Date Patient::getAdmissionDate() const {
 Date Patient::getDischargeDate() const {
     return dischargeDate;
 }
-void setDisDate(const Date& date) {
+void Patient::setDisDate(const Date& date) {
     dischargeDate = date;
 }
 
@@ -49,12 +57,6 @@ std::string Patient::getNeededSpecialty() const {
 void Patient::setNeededSpecialty(const std::string & specialty) {
     neededSpecialty = specialty;
 }
-
-Patient::Patient(const std::string& id, const std::string& fName, const std::string& lName,
-            const Date& birthday, 
-            const Doctor * doctor, 
-            const Date& admission, std::string neededSpecialty="")
-    : ID(id), Person(fName, lName), dateOfBirth(birthday), attendingPhysician(doctor), admitDate(admission) {}
 
 // keep this destructor implementation empty.
 Patient::~Patient() noexcept {

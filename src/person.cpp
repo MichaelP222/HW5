@@ -6,14 +6,14 @@
 Person::Person(const std::string & first, const std::string & last)
     : firstName(first), lastName(last) {}
 
-string Person::getFirstName() const {
+std::string Person::getFirstName() const {
     return firstName;
 }
 
-string Person::getLastName() const {
+std::string Person::getLastName() const {
     return lastName;
 }
 
-void print(std::ostream &os) const {
+void Person::print(std::ostream &os) const {
     os << firstName << " " << lastName;
 }
