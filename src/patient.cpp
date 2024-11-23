@@ -6,7 +6,8 @@ Patient::Patient(const std::string& id, const std::string& fName, const std::str
             const Date& birthday, 
             const Doctor * doctor, 
             const Date& admission, std::string neededSpecialty)
-    : Person(fName, lName), ID(id), dateOfBirth(birthday), attendingPhysician(doctor), neededSpecialty(std::move(neededSpecialty)), admitDate(admission) {}
+    : Person(fName, lName), ID(id), dateOfBirth(birthday), attendingPhysician(doctor), 
+    neededSpecialty(std::move(neededSpecialty)), admitDate(admission) {}
 
 void Patient::print(std::ostream& out) const {
     out << "Patient: ";
